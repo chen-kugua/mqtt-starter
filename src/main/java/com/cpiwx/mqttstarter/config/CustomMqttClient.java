@@ -38,6 +38,7 @@ public class CustomMqttClient {
             if (StrUtil.isNotBlank(topic)) {
                 String[] split = topic.split(StrUtil.COMMA);
                 for (String t : split) {
+                    log.debug("subscribing {}", t);
                     this.subscribe(t, 0);
                 }
             }
@@ -72,6 +73,7 @@ public class CustomMqttClient {
     public void unsubscribe(String topic) {
         if (mqttClient != null && mqttClient.isConnected()) {
             try {
+                log.debug("unsubscribe topic = {}", topic);
                 mqttClient.unsubscribe(topic);
             } catch (MqttException e) {
                 e.printStackTrace();
@@ -127,7 +129,7 @@ public class CustomMqttClient {
                 String[] split = topic.split(StrUtil.COMMA);
                 for (String t : split) {
                     try {
-                        log.info("unsubscribe topic = {}", t);
+                        log.debug("unsubscribe topic = {}", t);
                         mqttClient.unsubscribe(t);
                     } catch (Exception e) {
                         log.error("unsubscribing topic error", e);
@@ -136,8 +138,8 @@ public class CustomMqttClient {
                 try {
                     if (mqttClient.isConnected()) {
                         mqttClient.disconnect();
+                        mqttClient.close();
                     }
-                    mqttClient.close();
                 } catch (MqttException e) {
                     log.error("close mqtt client error", e);
                 }

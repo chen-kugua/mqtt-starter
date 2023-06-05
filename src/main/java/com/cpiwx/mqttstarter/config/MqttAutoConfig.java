@@ -96,7 +96,7 @@ public class MqttAutoConfig {
     @Bean
     @ConditionalOnMissingBean(CustomMqttClient.class)
     public CustomMqttClient customMqttClient(MqttClient mqttClient, MqttConnectOptions options, MqttCallback callback) {
-        log.info("CustomMqttClient...");
+        log.info("初始化CustomMqttClient...");
         return new CustomMqttClient(mqttClient, options, mqttProperties, callback);
     }
 
