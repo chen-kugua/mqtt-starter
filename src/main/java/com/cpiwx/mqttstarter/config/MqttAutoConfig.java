@@ -82,7 +82,7 @@ public class MqttAutoConfig {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
-                log.info("topic:{}--收到消息:{}", topic, new String(message.getPayload()));
+                log.info("topic:{}--收到消息", topic);
                 messageHandler.handleMessage(topic, message);
             }
 
