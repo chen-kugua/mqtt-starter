@@ -3,6 +3,7 @@ package com.cpiwx.mqttstarter;
 import cn.hutool.core.util.StrUtil;
 import com.cpiwx.mqttstarter.ano.EnableMqtt;
 import com.cpiwx.mqttstarter.config.CustomMqttClient;
+import com.cpiwx.mqttstarter.utils.RequestUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class MqttStarterApplication {
 
     @RequestMapping("/")
     public String index() {
-        return "ok";
+        return RequestUtil.getUserId();
     }
 
     @RequestMapping("/send")
